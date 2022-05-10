@@ -1,8 +1,8 @@
 # Tombola
 The project consists in the design and implementation of a distributed
 game where two entities CLIENT and SERVER share information about the current state of a game and interact with each other for making user play such game.
-• Server sets up the game, organizes the interaction flow, communicates the results to the participants.
-• Clients are the players, whose goal is to play the moves of the game as and when instructed by the server.
+- Server sets up the game, organizes the interaction flow, communicates the results to the participants.
+- Clients are the players, whose goal is to play the moves of the game as and when instructed by the server.
 
 Required Gaming Flow
 1. Discovery Phase: during the discovery phase, the server advertises the beginning of a new match for the game, sharing also the rules and all the information required for joining the game. This means that clients can reach the server in order to get the information required and to register/subscribe to the current match. Server can close the registration phase depending on different criteria, for instance after a predefined timeout exceeded or because a maximum number of clients joined the match.
