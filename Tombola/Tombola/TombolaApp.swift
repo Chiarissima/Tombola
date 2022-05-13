@@ -1,7 +1,6 @@
 //
 //  TombolaApp.swift
 //  Tombola
-//
 //  Created by Chiara Tagani on 10/05/22.
 //
 
