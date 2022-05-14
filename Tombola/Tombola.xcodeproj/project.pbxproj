@@ -10,13 +10,13 @@
 		214C9A63282AE7FB0029D2AF /* TombolaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C9A62282AE7FB0029D2AF /* TombolaApp.swift */; };
 		214C9A67282AE7FE0029D2AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214C9A66282AE7FE0029D2AF /* Assets.xcassets */; };
 		214C9A6A282AE7FE0029D2AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214C9A69282AE7FE0029D2AF /* Preview Assets.xcassets */; };
-		21579F60282FAACC00157AC9 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F5F282FAACC00157AC9 /* UsernameView.swift */; };
+		21579F60282FAACC00157AC9 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F5F282FAACC00157AC9 /* AuthenticationView.swift */; };
 		21579F64282FBB2000157AC9 /* ClassificaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F63282FBB2000157AC9 /* ClassificaView.swift */; };
 		21579F66282FBC7700157AC9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F65282FBC7700157AC9 /* HomeView.swift */; };
 		21579F6A282FF53000157AC9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F69282FF52F00157AC9 /* GameViewController.swift */; };
 		21579F6C282FF65800157AC9 /* ClassificaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F6B282FF65800157AC9 /* ClassificaViewController.swift */; };
 		21579F6E282FF75E00157AC9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F6D282FF75E00157AC9 /* HomeViewController.swift */; };
-		21579F70282FF7BF00157AC9 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F6F282FF7BF00157AC9 /* UsernameViewController.swift */; };
+		21579F70282FF7BF00157AC9 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F6F282FF7BF00157AC9 /* AuthenticationViewController.swift */; };
 		2175493A282DCBB0003AC0D0 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21754939282DCBB0003AC0D0 /* GameButton.swift */; };
 		2175493C282DCC04003AC0D0 /* GameSquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175493B282DCC04003AC0D0 /* GameSquareView.swift */; };
 		2175493E282DCC3D003AC0D0 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175493D282DCC3D003AC0D0 /* GameView.swift */; };
@@ -52,13 +52,13 @@
 		214C9A62282AE7FB0029D2AF /* TombolaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TombolaApp.swift; sourceTree = "<group>"; };
 		214C9A66282AE7FE0029D2AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		214C9A69282AE7FE0029D2AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		21579F5F282FAACC00157AC9 /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
+		21579F5F282FAACC00157AC9 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		21579F63282FBB2000157AC9 /* ClassificaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificaView.swift; sourceTree = "<group>"; };
 		21579F65282FBC7700157AC9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		21579F69282FF52F00157AC9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		21579F6B282FF65800157AC9 /* ClassificaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificaViewController.swift; sourceTree = "<group>"; };
 		21579F6D282FF75E00157AC9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		21579F6F282FF7BF00157AC9 /* UsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
+		21579F6F282FF7BF00157AC9 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		21754939282DCBB0003AC0D0 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		2175493B282DCC04003AC0D0 /* GameSquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSquareView.swift; sourceTree = "<group>"; };
 		2175493D282DCC3D003AC0D0 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 				2175493D282DCC3D003AC0D0 /* GameView.swift */,
 				21754939282DCBB0003AC0D0 /* GameButton.swift */,
 				2175493B282DCC04003AC0D0 /* GameSquareView.swift */,
-				21579F5F282FAACC00157AC9 /* UsernameView.swift */,
+				21579F5F282FAACC00157AC9 /* AuthenticationView.swift */,
 				21579F63282FBB2000157AC9 /* ClassificaView.swift */,
 				21579F65282FBC7700157AC9 /* HomeView.swift */,
 			);
@@ -157,7 +157,7 @@
 		21754945282DCD22003AC0D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				21579F6F282FF7BF00157AC9 /* UsernameViewController.swift */,
+				21579F6F282FF7BF00157AC9 /* AuthenticationViewController.swift */,
 				21579F6D282FF75E00157AC9 /* HomeViewController.swift */,
 				21579F6B282FF65800157AC9 /* ClassificaViewController.swift */,
 				21579F69282FF52F00157AC9 /* GameViewController.swift */,
@@ -285,8 +285,8 @@
 				21579F6C282FF65800157AC9 /* ClassificaViewController.swift in Sources */,
 				2175493C282DCC04003AC0D0 /* GameSquareView.swift in Sources */,
 				2175493A282DCBB0003AC0D0 /* GameButton.swift in Sources */,
-				21579F60282FAACC00157AC9 /* UsernameView.swift in Sources */,
-				21579F70282FF7BF00157AC9 /* UsernameViewController.swift in Sources */,
+				21579F60282FAACC00157AC9 /* AuthenticationView.swift in Sources */,
+				21579F70282FF7BF00157AC9 /* AuthenticationViewController.swift in Sources */,
 				21579F66282FBC7700157AC9 /* HomeView.swift in Sources */,
 				2175494E282DCE54003AC0D0 /* GameNotification.swift in Sources */,
 				21754949282DCD8B003AC0D0 /* Model.swift in Sources */,
@@ -443,7 +443,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -472,7 +472,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class UsernameViewController: ObservableObject {
+final class AuthenticationViewController: ObservableObject {
     @Published var isGameViewPresented = false
 }
 

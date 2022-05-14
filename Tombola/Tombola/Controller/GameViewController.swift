@@ -15,10 +15,10 @@ final class GameViewController: ObservableObject {
                               GridItem(.flexible()),
                               GridItem(.flexible())]
     
+    //everytime game is set, we call some functions
+    //check game status
     @Published var game: Game? {
-        //everytime game is set, we call some functions
         didSet {
-            //check game status
             checkIfGameIsOver()
             if game == nil { updateGameNotificationFor(.finished) } else {
                 game?.player2Id == "" ? updateGameNotificationFor(.waitingForPlayer) : updateGameNotificationFor(.started)
