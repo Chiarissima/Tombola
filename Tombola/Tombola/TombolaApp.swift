@@ -16,7 +16,7 @@ struct TombolaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            UsernameView()
         }
     }
 }

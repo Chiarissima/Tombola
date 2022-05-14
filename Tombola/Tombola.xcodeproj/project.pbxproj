@@ -8,16 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		214C9A63282AE7FB0029D2AF /* TombolaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C9A62282AE7FB0029D2AF /* TombolaApp.swift */; };
-		214C9A65282AE7FB0029D2AF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C9A64282AE7FB0029D2AF /* HomeView.swift */; };
 		214C9A67282AE7FE0029D2AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214C9A66282AE7FE0029D2AF /* Assets.xcassets */; };
 		214C9A6A282AE7FE0029D2AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214C9A69282AE7FE0029D2AF /* Preview Assets.xcassets */; };
+		21579F60282FAACC00157AC9 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F5F282FAACC00157AC9 /* UsernameView.swift */; };
+		21579F64282FBB2000157AC9 /* ClassificaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F63282FBB2000157AC9 /* ClassificaView.swift */; };
+		21579F66282FBC7700157AC9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F65282FBC7700157AC9 /* HomeView.swift */; };
+		21579F6A282FF53000157AC9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F69282FF52F00157AC9 /* GameViewController.swift */; };
+		21579F6C282FF65800157AC9 /* ClassificaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F6B282FF65800157AC9 /* ClassificaViewController.swift */; };
+		21579F6E282FF75E00157AC9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F6D282FF75E00157AC9 /* HomeViewController.swift */; };
+		21579F70282FF7BF00157AC9 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21579F6F282FF7BF00157AC9 /* UsernameViewController.swift */; };
 		2175493A282DCBB0003AC0D0 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21754939282DCBB0003AC0D0 /* GameButton.swift */; };
 		2175493C282DCC04003AC0D0 /* GameSquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175493B282DCC04003AC0D0 /* GameSquareView.swift */; };
 		2175493E282DCC3D003AC0D0 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175493D282DCC3D003AC0D0 /* GameView.swift */; };
 		21754940282DCCA7003AC0D0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175493F282DCCA7003AC0D0 /* LoadingView.swift */; };
 		21754942282DCCD9003AC0D0 /* PlayerIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21754941282DCCD9003AC0D0 /* PlayerIndicatorView.swift */; };
-		21754944282DCD1E003AC0D0 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21754943282DCD1E003AC0D0 /* GameViewModel.swift */; };
-		21754947282DCD66003AC0D0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21754946282DCD66003AC0D0 /* HomeViewModel.swift */; };
 		21754949282DCD8B003AC0D0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21754948282DCD8B003AC0D0 /* Model.swift */; };
 		2175494C282DCDD8003AC0D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175494B282DCDD8003AC0D0 /* User.swift */; };
 		2175494E282DCE54003AC0D0 /* GameNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175494D282DCE54003AC0D0 /* GameNotification.swift */; };
@@ -46,16 +50,20 @@
 /* Begin PBXFileReference section */
 		214C9A5F282AE7FB0029D2AF /* Tombola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tombola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		214C9A62282AE7FB0029D2AF /* TombolaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TombolaApp.swift; sourceTree = "<group>"; };
-		214C9A64282AE7FB0029D2AF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		214C9A66282AE7FE0029D2AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		214C9A69282AE7FE0029D2AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		21579F5F282FAACC00157AC9 /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
+		21579F63282FBB2000157AC9 /* ClassificaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificaView.swift; sourceTree = "<group>"; };
+		21579F65282FBC7700157AC9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		21579F69282FF52F00157AC9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		21579F6B282FF65800157AC9 /* ClassificaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificaViewController.swift; sourceTree = "<group>"; };
+		21579F6D282FF75E00157AC9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		21579F6F282FF7BF00157AC9 /* UsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
 		21754939282DCBB0003AC0D0 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		2175493B282DCC04003AC0D0 /* GameSquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSquareView.swift; sourceTree = "<group>"; };
 		2175493D282DCC3D003AC0D0 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		2175493F282DCCA7003AC0D0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		21754941282DCCD9003AC0D0 /* PlayerIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerIndicatorView.swift; sourceTree = "<group>"; };
-		21754943282DCD1E003AC0D0 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
-		21754946282DCD66003AC0D0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		21754948282DCD8B003AC0D0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2175494B282DCDD8003AC0D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2175494D282DCE54003AC0D0 /* GameNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNotification.swift; sourceTree = "<group>"; };
@@ -114,8 +122,8 @@
 				21754956282DD17D003AC0D0 /* GoogleService-Info.plist */,
 				214C9A62282AE7FB0029D2AF /* TombolaApp.swift */,
 				21754953282DCEB6003AC0D0 /* Firebase */,
-				2175494A282DCDC2003AC0D0 /* Controller */,
-				21754945282DCD22003AC0D0 /* Model */,
+				2175494A282DCDC2003AC0D0 /* Model */,
+				21754945282DCD22003AC0D0 /* Controller */,
 				21754938282DCB94003AC0D0 /* View */,
 				214C9A66282AE7FE0029D2AF /* Assets.xcassets */,
 				214C9A68282AE7FE0029D2AF /* Preview Content */,
@@ -134,26 +142,30 @@
 		21754938282DCB94003AC0D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				214C9A64282AE7FB0029D2AF /* HomeView.swift */,
 				2175493F282DCCA7003AC0D0 /* LoadingView.swift */,
 				21754941282DCCD9003AC0D0 /* PlayerIndicatorView.swift */,
 				2175493D282DCC3D003AC0D0 /* GameView.swift */,
 				21754939282DCBB0003AC0D0 /* GameButton.swift */,
 				2175493B282DCC04003AC0D0 /* GameSquareView.swift */,
+				21579F5F282FAACC00157AC9 /* UsernameView.swift */,
+				21579F63282FBB2000157AC9 /* ClassificaView.swift */,
+				21579F65282FBC7700157AC9 /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		21754945282DCD22003AC0D0 /* Model */ = {
+		21754945282DCD22003AC0D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				21754943282DCD1E003AC0D0 /* GameViewModel.swift */,
-				21754946282DCD66003AC0D0 /* HomeViewModel.swift */,
+				21579F6F282FF7BF00157AC9 /* UsernameViewController.swift */,
+				21579F6D282FF75E00157AC9 /* HomeViewController.swift */,
+				21579F6B282FF65800157AC9 /* ClassificaViewController.swift */,
+				21579F69282FF52F00157AC9 /* GameViewController.swift */,
 			);
-			path = Model;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		2175494A282DCDC2003AC0D0 /* Controller */ = {
+		2175494A282DCDC2003AC0D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				21754948282DCD8B003AC0D0 /* Model.swift */,
@@ -161,7 +173,7 @@
 				2175494D282DCE54003AC0D0 /* GameNotification.swift */,
 				2175494F282DCE77003AC0D0 /* AlertItem.swift */,
 			);
-			path = Controller;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		21754953282DCEB6003AC0D0 /* Firebase */ = {
@@ -265,18 +277,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21579F6A282FF53000157AC9 /* GameViewController.swift in Sources */,
 				2175494C282DCDD8003AC0D0 /* User.swift in Sources */,
 				21754955282DCECF003AC0D0 /* FirebaseService.swift in Sources */,
-				214C9A65282AE7FB0029D2AF /* HomeView.swift in Sources */,
 				21754952282DCEB0003AC0D0 /* FirebaseReference.swift in Sources */,
-				21754947282DCD66003AC0D0 /* HomeViewModel.swift in Sources */,
 				21754942282DCCD9003AC0D0 /* PlayerIndicatorView.swift in Sources */,
+				21579F6C282FF65800157AC9 /* ClassificaViewController.swift in Sources */,
 				2175493C282DCC04003AC0D0 /* GameSquareView.swift in Sources */,
 				2175493A282DCBB0003AC0D0 /* GameButton.swift in Sources */,
+				21579F60282FAACC00157AC9 /* UsernameView.swift in Sources */,
+				21579F70282FF7BF00157AC9 /* UsernameViewController.swift in Sources */,
+				21579F66282FBC7700157AC9 /* HomeView.swift in Sources */,
 				2175494E282DCE54003AC0D0 /* GameNotification.swift in Sources */,
 				21754949282DCD8B003AC0D0 /* Model.swift in Sources */,
-				21754944282DCD1E003AC0D0 /* GameViewModel.swift in Sources */,
 				214C9A63282AE7FB0029D2AF /* TombolaApp.swift in Sources */,
+				21579F6E282FF75E00157AC9 /* HomeViewController.swift in Sources */,
+				21579F64282FBB2000157AC9 /* ClassificaView.swift in Sources */,
 				2175493E282DCC3D003AC0D0 /* GameView.swift in Sources */,
 				21754950282DCE77003AC0D0 /* AlertItem.swift in Sources */,
 				21754940282DCCA7003AC0D0 /* LoadingView.swift in Sources */,
