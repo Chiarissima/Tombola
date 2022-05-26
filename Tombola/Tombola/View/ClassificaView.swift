@@ -20,7 +20,30 @@ struct ClassificaView: View {
                         .resizable()
                         .scaledToFit()
                     
-                    Text("Classifica!")
+                    Text("CLASSIFICA")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color(hue: 0.07, saturation: 0.172, brightness: 0.412))
+                        .multilineTextAlignment(.center)
+
+                    List(0..<10) { item in
+                        HStack {
+                            Image(systemName: "photo")
+                            VStack(alignment: .leading) {
+                                Text("Filippo Lupatelli")
+                                Text("filo@unibo.it")
+                                    .font(.subheadline)
+                                    .fontWeight(.light)
+                            }
+
+                            Text("300")
+                                .multilineTextAlignment(.trailing)
+                            Image("coin")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .scaledToFit()
+                        }
+                    }
                     
                     Button {
                         print("Indietro")
@@ -28,8 +51,7 @@ struct ClassificaView: View {
                     }label: {
                         GameButton(title: "Indietro", backgroundColor: Color(red: 1.00, green: 0.50, blue: 0.50))
                     }
-                        
-                        
+                    
                 }).edgesIgnoringSafeArea(.vertical)
     }
 }

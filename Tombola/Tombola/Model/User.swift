@@ -6,7 +6,8 @@
 
 import Foundation
 
-struct User: Codable {
+class User: Codable {
     var id = UUID().uuidString
-    var username = ""
+    var username: String=""
+    var password: String=""
 }

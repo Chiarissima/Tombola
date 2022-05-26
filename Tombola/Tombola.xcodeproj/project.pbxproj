@@ -45,6 +45,7 @@
 		21754974282DD272003AC0D0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 21754973282DD272003AC0D0 /* FirebaseStorage */; };
 		21754976282DD272003AC0D0 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 21754975282DD272003AC0D0 /* FirebaseStorageCombine-Community */; };
 		21754978282DD272003AC0D0 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 21754977282DD272003AC0D0 /* FirebaseStorageSwift-Beta */; };
+		218344ED283BB2240045E75C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218344EC283BB2240045E75C /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		21754951282DCEB0003AC0D0 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		21754954282DCECF003AC0D0 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		21754956282DD17D003AC0D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		218344EC283BB2240045E75C /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				2175494B282DCDD8003AC0D0 /* User.swift */,
 				2175494D282DCE54003AC0D0 /* GameNotification.swift */,
 				2175494F282DCE77003AC0D0 /* AlertItem.swift */,
+				218344EC283BB2240045E75C /* Alert.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				21579F64282FBB2000157AC9 /* ClassificaView.swift in Sources */,
 				2175493E282DCC3D003AC0D0 /* GameView.swift in Sources */,
 				21754950282DCE77003AC0D0 /* AlertItem.swift in Sources */,
+				218344ED283BB2240045E75C /* Alert.swift in Sources */,
 				21754940282DCCA7003AC0D0 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

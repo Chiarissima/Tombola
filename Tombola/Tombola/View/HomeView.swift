@@ -11,6 +11,8 @@ struct HomeView: View {
     //devo avere accesso alla UsernameViewModel, la inizializzo
     @StateObject var viewController = HomeViewController()
     @StateObject var classificaController = ClassificaViewController()
+    @StateObject var authController = AuthenticationViewController()
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var body: some View {
         
@@ -18,9 +20,21 @@ struct HomeView: View {
                 .overlay(
                     VStack(spacing: 20){
                         
+                        Button(action: {
+                            authController.signOut()
+                            print("Logout effettuato con successo!")
+                            mode.wrappedValue.dismiss()
+                        }, label: {
+                            Text("Logout")
+                                .foregroundColor(Color.orange)
+                                
+                        }).frame(width: 300, alignment: .topLeading)
+                        
+                        
                         Image("Bingo")
                             .resizable()
                             .scaledToFit()
+                            .frame(width: 200, height: 200, alignment: .topLeading)
                             
                         
                         Button {
@@ -43,7 +57,12 @@ struct HomeView: View {
                             ClassificaView()
                         }
                         
+                        var nome = UserDefaults.standard.string(forKey: "username")!
+                        Text("Ciao "+nome)
+                        
+                        
                     }).edgesIgnoringSafeArea(.vertical)
+            .frame(alignment: .topLeading)
                 
     }
 }

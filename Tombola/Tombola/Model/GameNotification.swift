@@ -13,7 +13,7 @@ enum GameState {
 }
 
 struct GameNotification {
-    static let waitingForPlayer = "Waiting for player"
-    static let gameHasStarted = "Game has started"
-    static let gameFinished = "Player left the game"
+    static let waitingForPlayer = "In attesa degli altri partecipanti"
+    static let gameHasStarted = "Partita iniziata!"
+    static let gameFinished = "Gli altri giocatori hanno abbandonato"
 }

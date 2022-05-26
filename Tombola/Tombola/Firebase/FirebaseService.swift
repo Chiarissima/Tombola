@@ -9,13 +9,17 @@ import Firebase
 import FirebaseFirestoreSwift
 import Combine
 
-final class FirebaseService: ObservableObject {
+final class FirebaseService: NSObject {
     
+    let auth: Auth
     static let shared = FirebaseService()
     
     @Published var game: Game!
     
-    init() {}
+    override init() {
+        self.auth = Auth.auth()
+        super.init()
+    }
     
     
     //saves the game online created by createNewGame()
@@ -48,8 +52,7 @@ final class FirebaseService: ObservableObject {
                 //converto il dictionary in un game object
                 self.game = try? gameData.data(as: Game.self)
                 //update parameters
-                self.game.player2Id = userId
-                self.game.blockMoveForPlayerId = userId
+                //self.game.player2Id = userId
                
                 //update game object
                 self.updateGame(self.game)
@@ -76,14 +79,12 @@ final class FirebaseService: ObservableObject {
                 self.game = try? snapshot.data(as: Game.self)
             }
         }
-        
     }
     
     
     func createNewGame(with userId: String) {
         print("Creating game for userId: ", userId)
-        self.game = Game(id: UUID().uuidString, player1Id: userId, player2Id: "", blockMoveForPlayerId: userId, winningPlayerId: "", rematchPlayerId: [], moves: Array(repeating: nil, count: 9))
-        
+        self.game = Game(id: UUID().uuidString, player1Id: userId, player2Id: "", player3Id: "", amboWinnerId: "", ternaWinnerId: "", quaternaWinnerId: "", cinquinaWinnerId: "", tombolaWinnerId: "", rematchPlayerId: [], numeriEstratti: [])
         //now we save online
         self.createOnlineGame()
         self.listenForGameChanges()
