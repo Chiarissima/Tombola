@@ -78,6 +78,15 @@ final class GameViewController: ObservableObject {
     var cinq2: Int = 0
     var cinq3: Int = 0
     
+    
+    var cronologia = Array(repeating: 0, count: 9)
+    var cronologiaTot =  Array(repeating: 0, count: 90)
+    var indiceCronologia : Int = 0
+    var numEstratto: Int = 0
+    var numEstrattoGiusto: Int = 0
+    var timer = Timer.publish(every: 3, on: .current, in: .common).autoconnect()
+    
+    
     init() {
         /*retrieveUser()
         
@@ -395,5 +404,34 @@ final class GameViewController: ObservableObject {
         }
         return txtPremio
     }
+    
+    //Timer Cronologia
+    func estrazione() -> (Int, Array<Int>, Array<Int>) {
+        numEstratto = (Int.random(in: 1...90))
+        timer = Timer.publish(every: 3, on: .current, in: .common).autoconnect()
+        if (!cronologiaTot.contains(numEstratto)){
+            cronologiaTot[indiceCronologia] = numEstratto
+            indiceCronologia+=1;
+            
+            numEstrattoGiusto = numEstratto
+            cronologia[0] = cronologia[1]
+            cronologia[1] = cronologia[2]
+            cronologia[2] = cronologia[3]
+            cronologia[3] = cronologia[4]
+            cronologia[4] = cronologia[5]
+            cronologia[5] = cronologia[6]
+            cronologia[6] = cronologia[7]
+            cronologia[7] = cronologia[8]
+            cronologia[8] = numEstrattoGiusto
+            
+        } else {
+            timer = Timer.publish(every: 0.1, on: .current, in: .common).autoconnect()
+            
+        }
+        
+        return (numEstrattoGiusto, cronologia, cronologiaTot)
+        
+    }
+
 }
 

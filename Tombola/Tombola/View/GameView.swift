@@ -10,7 +10,7 @@ struct GameView: View {
     
     @ObservedObject var viewController: GameViewController
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
+
     @State var selectedBtn: Int = 9
     @State var isClicked: Bool = false
     @State var buttonColor: Color = .white
@@ -25,10 +25,7 @@ struct GameView: View {
     @State var txtPremio: String = "TERNA"
     
     @State var cronologia = Array(repeating: 0, count: 9)
-    @State var cronologia0 = Array(repeating: 0, count: 9)
     @State var cronologiaTot = Array(repeating: 0, count: 90)
-    @State var indiceCronologia: Int = 0
-    @State var numEstratto: Int = 0
     @State var numEstrattoGiusto: Int = 0
     @State var timer = Timer.publish(every: 3, on: .current, in: .common).autoconnect()
     
@@ -77,27 +74,8 @@ struct GameView: View {
                     
                     Text("\(numEstrattoGiusto)")
                             .onReceive(timer) { input in
-                                numEstratto = (Int.random(in: 1...90))
-                                timer = Timer.publish(every: 3, on: .current, in: .common).autoconnect()
-                                if (!cronologiaTot.contains(numEstratto)){
-                                    
-                                    cronologiaTot[indiceCronologia] = numEstratto
-                                    indiceCronologia+=1;
-                                    
-                                    numEstrattoGiusto = numEstratto
-                                    cronologia[0] = cronologia[1]
-                                    cronologia[1] = cronologia[2]
-                                    cronologia[2] = cronologia[3]
-                                    cronologia[3] = cronologia[4]
-                                    cronologia[4] = cronologia[5]
-                                    cronologia[5] = cronologia[6]
-                                    cronologia[6] = cronologia[7]
-                                    cronologia[7] = cronologia[8]
-                                    cronologia[8] = numEstrattoGiusto
-                                } else {
-                                    timer = Timer.publish(every: 0.1, on: .current, in: .common).autoconnect()
-                                }
-                          
+                                (numEstrattoGiusto, cronologia, cronologiaTot) = viewController.estrazione()
+                           
                     }
                     .foregroundColor(.black)
                     .frame(width: 70.0, height: 70.0)
