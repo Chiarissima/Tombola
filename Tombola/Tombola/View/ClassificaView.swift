@@ -16,7 +16,7 @@ struct ClassificaView: View {
         Color(red: 1.0, green: 0.9137, blue: 0.6275)
             .overlay(
                 VStack(spacing: 20){
-                    Image("Bingo")
+                    Image("logo")
                         .resizable()
                         .scaledToFit()
                     
@@ -49,9 +49,11 @@ struct ClassificaView: View {
                         print("Indietro")
                         mode.wrappedValue.dismiss()
                     }label: {
-                        GameButton(title: "Indietro", backgroundColor: Color(red: 1.00, green: 0.50, blue: 0.50))
+                        GameButton(title: "Indietro", backgroundColor: Color(hue: 0.081, saturation: 0.237, brightness: 0.66))
                     }
-                    
+                    .padding(.bottom, 20.0)
+                        
+                        
                 }).edgesIgnoringSafeArea(.vertical)
     }
 }

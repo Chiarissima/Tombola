@@ -11,7 +11,6 @@ struct GameView: View {
     @ObservedObject var viewController: GameViewController
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
-    
     @State var selectedBtn: Int = 9
     @State var isClicked: Bool = false
     @State var buttonColor: Color = .white
