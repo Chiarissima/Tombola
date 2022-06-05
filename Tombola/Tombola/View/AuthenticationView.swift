@@ -81,11 +81,8 @@ struct AuthenticationView: View {
                     }, label: {
                         GameButton(title: isLoginMode ? "Login" : "Registrati", backgroundColor: Color(.systemRed))
                     }).alert(isPresented: $showAlert) { () -> Alert in
-                        Alert(title: Text("Attenzione!"), message: Text("Registrazione effettuata!"), dismissButton: .default(Text("OK")))
+                        Alert(title: Text("Registrazione effettuata!"), message: Text("Registrazione effettuata con successo, ora puoi loggarti!"), dismissButton: .default(Text("OK")))
                         }
-                    .refreshable {
-                        print("Refresh")
-                    }
                 }
             }.padding()
             .background(Color(red: 1.0, green: 0.9137, blue: 0.6275)
@@ -98,6 +95,7 @@ struct AuthenticationView: View {
         .fullScreenCover(isPresented: $isSignedIn){
             //indichi quale view vuoi mostrare
             HomeView(viewController: HomeViewController())
+            
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  UsernameViewController.swift
+//  AuthenticationViewController.swift
 //  Tombola
 //
 //  Created by Chiara Tagani on 14/05/22.
@@ -9,17 +9,12 @@ import SwiftUI
 import FirebaseAuth
 
 final class AuthenticationViewController: ObservableObject {
-    @Published var isHomeViewPresented = false
     @Published var signedIn = false
     @Published var signUp = false
     @State var authView = AuthenticationView()
-    //@Published var user: User!
     @Published var alertItem: AlertItem?
-    @Published var user = User()
+    @Published var classifica: Classifica?
     
-    var isSignedIn: Bool {
-        return auth.currentUser != nil
-    }
     
     let auth = Auth.auth()
     
@@ -43,11 +38,10 @@ final class AuthenticationViewController: ObservableObject {
             }
             
             print("Login effettuato con successo!")
+            
         }
-        
     }
 
-    @State var loginStatusMessage = ""
 
     func signUp(username: String, password: String, completion: @escaping (Bool) -> Void) {
         alertItem = nil
@@ -58,10 +52,16 @@ final class AuthenticationViewController: ObservableObject {
                 return
             }
             
+            let userDef = UserDefaults.standard
+            userDef.set(username, forKey: "username")
+            userDef.set(password, forKey: "password")
+            userDef.set(0, forKey: "score")
+            
             DispatchQueue.main.async {
                 //Success
                 self?.signUp = true
                 completion(true)
+                FirebaseService.shared.updateClassifica(with: username)
             }
             
             print("Registrazione effettuata con successo!")

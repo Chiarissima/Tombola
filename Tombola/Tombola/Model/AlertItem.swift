@@ -29,4 +29,5 @@ struct AlertContext {
     static let quaternaLost = AlertItem(title: Text("Quaterna!"), message: Text("Un giocatore ha fatto quaterna"), buttonTitle: Text("Ok"))
     static let cinquinaLost = AlertItem(title: Text("Cinquina!"), message: Text("Un giocatore ha fatto cinquina"), buttonTitle: Text("Ok"))
     static let tombolaLost = AlertItem(title: Text("Tombola!"), message: Text("Un giocatore ha fatto tombola"), buttonTitle: Text("Gioca"))
+    static let tombola = AlertItem(title: Text("Tombola!"), message: Text("E' stata fatta tombola"), buttonTitle: Text("Ok"))
 }

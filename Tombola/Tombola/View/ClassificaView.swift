@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ClassificaView: View {
     
+    @ObservedObject var viewController: ClassificaViewController
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
@@ -26,7 +27,7 @@ struct ClassificaView: View {
                         .foregroundColor(Color(hue: 0.07, saturation: 0.172, brightness: 0.412))
                         .multilineTextAlignment(.center)
 
-                    List(0..<10) { item in
+                    /*List(0..<10) { item in
                         HStack {
                             Image(systemName: "photo")
                             VStack(alignment: .leading) {
@@ -42,6 +43,25 @@ struct ClassificaView: View {
                                 .resizable()
                                 .frame(width: 20, height: 20)
                                 .scaledToFit()
+                        }
+                    }*/
+                   
+                    ForEach(0..<ClassificaViewController.utenti.count) { i in
+                        HStack {
+                            Image(systemName: "photo")
+                            VStack(alignment: .leading) {
+                                Text("\(ClassificaViewController.utenti[i])")
+                                Text("\(ClassificaViewController.utenti[i])")
+                                    .font(.subheadline)
+                                    .fontWeight(.light)
+                            }
+                            Text("\(ClassificaViewController.punteggi[i])")
+                                .multilineTextAlignment(.trailing)
+                            Image("coin")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .scaledToFit()
+                            
                         }
                     }
                     
@@ -60,6 +80,6 @@ struct ClassificaView: View {
 
 struct ClassificaView_Previews: PreviewProvider {
     static var previews: some View {
-        ClassificaView()
+        ClassificaView(viewController: ClassificaViewController())
     }
 }

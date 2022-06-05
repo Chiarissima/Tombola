@@ -9,22 +9,37 @@ import SwiftUI
 import Combine
 
 final class GameViewController: ObservableObject {
-    //@AppStorage("user") private var userData: Data?
     
-    //everytime game is set, we call some functions
-    //check game status
     @Published var game: Game? {
         didSet {
-            if game == nil { updateGameNotificationFor(.finished) } else {
-                game?.player2Id == "" ? updateGameNotificationFor(.waitingForPlayer) : updateGameNotificationFor(.started)
+            if game == nil {
+                updateGameNotificationFor(.finished)
+            } else if game?.player2Id == "" {
+                updateGameNotificationFor(.waitingForPlayer)
+            } else if game?.tombolaWinnerId != "" {
+                updateWinGameNotificationFor(.tombola)
+            } else {
+                updateGameNotificationFor(.started)
+            }
+            if (game?.amboWinnerId == "") {
+                updateWinGameNotificationFor(.ambo)
+            } else if (game?.amboWinnerId != "" && game?.ternaWinnerId == "") {
+                updateWinGameNotificationFor(.terna)
+            } else if (game?.amboWinnerId != "" && game?.ternaWinnerId != "" && game?.quaternaWinnerId == "") {
+                updateWinGameNotificationFor(.quaterna)
+            } else if (game?.amboWinnerId != "" && game?.ternaWinnerId != "" && game?.quaternaWinnerId != "" && game?.cinquinaWinnerId == ""){
+                updateWinGameNotificationFor(.cinquina)
+            } else {
+                updateWinGameNotificationFor(.tombola)
             }
         }
     }
     
-    //@Published var currentUser: User!
     @Published var alertItem: AlertItem?
     @Published var gameNotification = GameNotification.waitingForPlayer
+    @Published var gameWin = WinGameNotification.ambo
     var utente = UserDefaults.standard.string(forKey: "username")!
+    var punteggioUtente = UserDefaults.standard.string(forKey: "score")!
     private var cancellables: Set<AnyCancellable> = []
     
     //Array "vuoto" iniziale per i 15 numeri casuali
@@ -39,11 +54,6 @@ final class GameViewController: ObservableObject {
     var ar0 = Array(repeating: "", count: 9)
     var br0 = Array(repeating: "", count: 9)
     var cr0 = Array(repeating: "", count: 9)
-    
-    //numero max di numeri per riga = 5
-    var v1: Int = 5
-    var v2: Int = 5
-    var v3: Int = 5
     
     //numero max di muneri per colonna = 3 + tot numeri = 15
     var tot: Int = 15
@@ -64,39 +74,31 @@ final class GameViewController: ObservableObject {
     var rCard1 = Array(repeating: false, count: 9)
     var rCard2 = Array(repeating: false, count: 9)
     var rCard3 = Array(repeating: false, count: 9)
-    var buttonColor: Color = .white
     
     //conrollo per premi = terna/cinquina/tombola
     var cro = Array(repeating: 0, count: 90)
-    var cro1 = Array(repeating: 0, count: 9)
-    var cro0 = Array(repeating: "", count: 9)
     var txtPremio: String = "TERNA"
+    var ambo1: Int = 0
+    var ambo2: Int = 0
+    var ambo3: Int = 0
     var terna1: Int = 0
     var terna2: Int = 0
     var terna3: Int = 0
+    var quaterna1: Int = 0
+    var quaterna2: Int = 0
+    var quaterna3: Int = 0
     var cinq1: Int = 0
     var cinq2: Int = 0
     var cinq3: Int = 0
+    var tomb1: Int = 0
+    var tomb2: Int = 0
+    var tomb3: Int = 0
     
-    
-    var cronologia = Array(repeating: 0, count: 9)
-    var cronologiaTot =  Array(repeating: 0, count: 90)
+    var cronologia : [Int] = []
     var indiceCronologia : Int = 0
     var numEstratto: Int = 0
     var numEstrattoGiusto: Int = 0
-    var timer = Timer.publish(every: 3, on: .current, in: .common).autoconnect()
     
-    
-    init() {
-        /*retrieveUser()
-        
-        if currentUser==nil {
-            saveUser()
-        }*/
-        
-        print("We have a user with username: ", utente)
-        
-    }
     
     func getTheGame() {
         FirebaseService.shared.startGame(with: utente)
@@ -108,11 +110,6 @@ final class GameViewController: ObservableObject {
     
     func quitGame(){
         FirebaseService.shared.quitGame()
-    }
-    
-    func isPlayerOne() -> Bool {
-        //if the player1 is the currentUser.id we return true, otherwise it's false
-        return game != nil ? game!.player1Id == utente : false
     }
     
     
@@ -129,33 +126,22 @@ final class GameViewController: ObservableObject {
         
     }
     
-    
-    //check if there is already a user
-    //MARK: User object
-    
-    /*func saveUser() {
+    func updateWinGameNotificationFor(_ state: WinGame){
         
-        currentUser = User()
-        do{
-            print("Encoding user object")
-            let data = try JSONEncoder().encode(currentUser)
-            userData = data
-        } catch {
-            print("Couldn't save user object")
+        switch state {
+        case .ambo:
+            gameWin = WinGameNotification.ambo
+        case .terna:
+            gameWin = WinGameNotification.terna
+        case .quaterna:
+            gameWin = WinGameNotification.quaterna
+        case .cinquina:
+            gameWin = WinGameNotification.cinquina
+        case .tombola:
+            gameWin = WinGameNotification.tombola
         }
+        
     }
-    
-    func retrieveUser(){
-        
-        guard let userData = userData else { return }
-        
-        do{
-            print("Decoding user")
-            currentUser = try JSONDecoder().decode(User.self, from: userData)
-        }catch{
-            print("No user saved")
-        }
-    }*/
     
     //Metodo per settare 15 numeri casuali con max 3 numeri per decina
     func getRandomNumber() -> Array<Int> {
@@ -326,112 +312,171 @@ final class GameViewController: ObservableObject {
         return (r1, r2, r3)
     }
     
-    //Metodo che attesta Premio = Terna/Cinquina/Tombola
-    func checkPremio (cro: Array<Int>, ar: Array<Int>, br: Array<Int>, cr: Array<Int>, rCard1: Array<Bool>, rCard2: Array<Bool>, rCard3: Array<Bool>, r1: Array<Color>, r2: Array<Color>, r3: Array<Color>) -> String{
-        if (txtPremio == "TERNA"){
+    //Metodo che attesta Premio = Ambo/Terna/Quaterna/Cinquina/Tombola
+    func checkPremio (firstRow: Array<Int>, secondRow: Array<Int>, thirdRow: Array<Int>, firstRowSelected: Array<Bool>, secondRowSelected: Array<Bool>, thirdRowSelected: Array<Bool>, stato: String) {
+        guard game != nil else { return }
+        if (stato == "AMBO"){
+            ambo1 = 0
+            for i in 0...8 {
+                if ((firstRow[i] != 0) && (firstRowSelected[i] == true) && game!.numeriEstratti.contains(firstRow[i])){
+                    ambo1 += 1
+                }
+            }
+            ambo2 = 0
+            for i in 0...8 {
+                if ((secondRow[i] != 0) && (secondRowSelected[i] == true) && game!.numeriEstratti.contains(secondRow[i])){
+                    ambo2 += 1
+                }
+            }
+            ambo3 = 0
+            for i in 0...8 {
+                if ((thirdRow[i] != 0) && (thirdRowSelected[i] == true) && game!.numeriEstratti.contains(thirdRow[i])){
+                    ambo3 += 1
+                }
+            }
+            if ((ambo1 == 2) || (ambo2 == 2) || (ambo3 == 2)) {
+                FirebaseService.shared.updateAmbo(with: utente)
+                var score = UserDefaults.standard.integer(forKey: "score")
+                score += 2
+                UserDefaults.standard.set(score, forKey: "score")
+                UserDefaults.standard.synchronize()
+                FirebaseService.shared.updateScoreAmbo(with: utente)
+            }
+        }
+        if (stato == "TERNA"){
             terna1 = 0
             for i in 0...8 {
-                if ((ar[i] != 0) && (rCard1[i] == true) && cro.contains(ar[i])){
+                if ((firstRow[i] != 0) && (firstRowSelected[i] == true) && game!.numeriEstratti.contains(firstRow[i])){
                     terna1 += 1
-                } else if ((ar[i] != 0) && (rCard1[i] == true) && !cro.contains(ar[i])){
-                    self.r1[i] = Color.red
-                    self.rCard1[i] = false
                 }
             }
             terna2 = 0
             for i in 0...8 {
-                if ((br[i] != 0) && (rCard2[i] == true) && cro.contains(br[i])){
+                if ((secondRow[i] != 0) && (secondRowSelected[i] == true) && game!.numeriEstratti.contains(secondRow[i])){
                     terna2 += 1
-                } else if ((br[i] != 0) && (rCard2[i] == true) && !cro.contains(br[i])){
-                    self.rCard2[i] = false
                 }
             }
             terna3 = 0
             for i in 0...8 {
-                if ((cr[i] != 0) && (rCard3[i] == true) && cro.contains(cr[i])){
+                if ((thirdRow[i] != 0) && (thirdRowSelected[i] == true) && game!.numeriEstratti.contains(thirdRow[i])){
                     terna3 += 1
-                } else if ((cr[i] != 0) && (rCard3[i] == true) && !cro.contains(cr[i])){
-                    self.rCard3[i] = false
                 }
             }
-            if ((terna1 >= 3) || (terna2 >= 3) || (terna3 >= 3)) {
-                txtPremio = "CINQUINA"
-            }
-        } else if (txtPremio == "CINQUINA"){
-            cinq1 = 0
-            for i in 0...8 {
-                if ((ar[i] != 0) && (rCard1[i] == true) && cro.contains(ar[i])){
-                    cinq1 += 1
-                }
-            }
-            cinq2 = 0
-            for i in 0...8 {
-                if ((br[i] != 0) && (rCard2[i] == true) && cro.contains(br[i])){
-                    cinq2 += 1
-                }
-            }
-            cinq3 = 0
-            for i in 0...8 {
-                if ((cr[i] != 0) && (rCard3[i] == true) && cro.contains(cr[i])){
-                    cinq3 += 1
-                }
-            }
-            if ((cinq1 >= 5) || (cinq2 >= 5) || (cinq3 >= 5)) {
-                txtPremio = "TOMBOLA"
-            }
-        } else if (txtPremio == "TOMBOLA"){
-            cinq1 = 0
-            for i in 0...8 {
-                if ((ar[i] != 0) && (rCard1[i] == true) && cro.contains(ar[i])){
-                    cinq1 += 1
-                }
-            }
-            cinq2 = 0
-            for i in 0...8 {
-                if ((br[i] != 0) && (rCard2[i] == true) && cro.contains(br[i])){
-                    cinq2 += 1
-                }
-            }
-            cinq3 = 0
-            for i in 0...8 {
-                if ((cr[i] != 0) && (rCard3[i] == true) && cro.contains(cr[i])){
-                    cinq3 += 1
-                }
-            }
-            if ((cinq1 >= 5) && (cinq2 >= 5) && (cinq3 >= 5)) {
-                txtPremio = "!!! WIN !!!!"
+            if ((terna1 == 3) || (terna2 == 3) || (terna3 == 3)) {
+                FirebaseService.shared.updateTerna(with: utente)
+                var score = UserDefaults.standard.integer(forKey: "score")
+                score += 3
+                UserDefaults.standard.set(score, forKey: "score")
+                UserDefaults.standard.synchronize()
+                FirebaseService.shared.updateScoreTerna(with: utente)
             }
         }
-        return txtPremio
+        if (stato == "QUATERNA"){
+            quaterna1 = 0
+            for i in 0...8 {
+                if ((firstRow[i] != 0) && (firstRowSelected[i] == true) && game!.numeriEstratti.contains(firstRow[i])){
+                    quaterna1 += 1
+                }
+            }
+            quaterna2 = 0
+            for i in 0...8 {
+                if ((secondRow[i] != 0) && (secondRowSelected[i] == true) && game!.numeriEstratti.contains(secondRow[i])){
+                    quaterna2 += 1
+                }
+            }
+            quaterna3 = 0
+            for i in 0...8 {
+                if ((thirdRow[i] != 0) && (thirdRowSelected[i] == true) && game!.numeriEstratti.contains(thirdRow[i])){
+                    quaterna3 += 1
+                }
+            }
+            if ((quaterna1 == 4) || (quaterna2 == 4) || (quaterna3 == 4)) {
+                FirebaseService.shared.updateQuaterna(with: utente)
+                var score = UserDefaults.standard.integer(forKey: "score")
+                score += 4
+                UserDefaults.standard.set(score, forKey: "score")
+                UserDefaults.standard.synchronize()
+                FirebaseService.shared.updateScoreQuaterna(with: utente)
+            }
+        }
+        if (stato == "CINQUINA"){
+            cinq1 = 0
+            for i in 0...8 {
+                if ((firstRow[i] != 0) && (firstRowSelected[i] == true) && game!.numeriEstratti.contains(firstRow[i])){
+                    cinq1 += 1
+                }
+            }
+            cinq2 = 0
+            for i in 0...8 {
+                if ((secondRow[i] != 0) && (secondRowSelected[i] == true) && game!.numeriEstratti.contains(secondRow[i])){
+                    cinq2 += 1
+                }
+            }
+            cinq3 = 0
+            for i in 0...8 {
+                if ((thirdRow[i] != 0) && (thirdRowSelected[i] == true) && game!.numeriEstratti.contains(thirdRow[i])){
+                    cinq3 += 1
+                }
+            }
+            if ((cinq1 == 5) || (cinq2 == 5) || (cinq3 == 5)) {
+                FirebaseService.shared.updateCinquina(with: utente)
+                var score = UserDefaults.standard.integer(forKey: "score")
+                score += 5
+                UserDefaults.standard.set(score, forKey: "score")
+                UserDefaults.standard.synchronize()
+                FirebaseService.shared.updateScoreCinquina(with: utente)
+            }
+        }
+        if (stato == "TOMBOLA"){
+            tomb1 = 0
+            for i in 0...8 {
+                if ((firstRow[i] != 0) && (firstRowSelected[i] == true) && game!.numeriEstratti.contains(firstRow[i])){
+                    tomb1 += 1
+                }
+            }
+            tomb2 = 0
+            for i in 0...8 {
+                if ((secondRow[i] != 0) && (secondRowSelected[i] == true) && game!.numeriEstratti.contains(secondRow[i])){
+                    tomb2 += 1
+                }
+            }
+            tomb3 = 0
+            for i in 0...8 {
+                if ((thirdRow[i] != 0) && (thirdRowSelected[i] == true) && game!.numeriEstratti.contains(thirdRow[i])){
+                    tomb3 += 1
+                }
+            }
+            if ((tomb1 >= 5) && (tomb2 >= 5) && (tomb3 >= 5)) {
+                FirebaseService.shared.updateTombola(with: utente)
+                var score = UserDefaults.standard.integer(forKey: "score")
+                score += 6
+                UserDefaults.standard.set(score, forKey: "score")
+                UserDefaults.standard.synchronize()
+                FirebaseService.shared.updateScoreTombola(with: utente)
+            }
+        }
+        
+        FirebaseService.shared.updateGame(game!)
     }
     
-    //Timer Cronologia
-    func estrazione() -> (Int, Array<Int>, Array<Int>) {
-        numEstratto = (Int.random(in: 1...90))
-        timer = Timer.publish(every: 3, on: .current, in: .common).autoconnect()
-        if (!cronologiaTot.contains(numEstratto)){
-            cronologiaTot[indiceCronologia] = numEstratto
-            indiceCronologia+=1;
-            
-            numEstrattoGiusto = numEstratto
-            cronologia[0] = cronologia[1]
-            cronologia[1] = cronologia[2]
-            cronologia[2] = cronologia[3]
-            cronologia[3] = cronologia[4]
-            cronologia[4] = cronologia[5]
-            cronologia[5] = cronologia[6]
-            cronologia[6] = cronologia[7]
-            cronologia[7] = cronologia[8]
-            cronologia[8] = numEstrattoGiusto
-            
-        } else {
-            timer = Timer.publish(every: 0.1, on: .current, in: .common).autoconnect()
-            
+    func getLastNumber() -> (Int) {
+        var number = 0
+        guard game != nil else { return 0}
+        if !(game!.numeriEstratti.isEmpty){
+            number = game!.numeriEstratti.last!
         }
-        
-        return (numEstrattoGiusto, cronologia, cronologiaTot)
-        
+        return number
     }
-
+    
+    func getListNumbers() -> Array<Int> {
+        guard game != nil else { return []}
+        if !(game!.numeriEstratti.isEmpty) {
+            if !(cronologia.contains(getLastNumber())){
+                cronologia.append(getLastNumber())
+            }
+        }
+        return cronologia
+    }
+    
 }
 

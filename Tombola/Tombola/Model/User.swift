@@ -8,6 +8,7 @@ import Foundation
 
 class User: Codable {
     var id = UUID().uuidString
-    var username: String=""
-    var password: String=""
+    var username: String = ""
+    var password: String = ""
+    var score: Int = 0
 }

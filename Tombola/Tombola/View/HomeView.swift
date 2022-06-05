@@ -8,7 +8,7 @@ import SwiftUI
 
 struct HomeView: View {
         
-    //devo avere accesso alla UsernameViewModel, la inizializzo
+    //devo avere accesso alla AuthenticationViewModel, la inizializzo
     @StateObject var viewController = HomeViewController()
     @StateObject var classificaController = ClassificaViewController()
     @StateObject var authController = AuthenticationViewController()
@@ -43,7 +43,7 @@ struct HomeView: View {
                         }label: {
                             GameButton(title: "Inizia", backgroundColor: Color(.systemRed))
                         }.fullScreenCover(isPresented: $viewController.isGameViewPresented){
-                            //indichi quale view vuoi mostrare
+                            //indico quale view mostrare
                             GameView(viewController: GameViewController())
                             }
                     
@@ -51,14 +51,18 @@ struct HomeView: View {
                         Button {
                             print("Classifica")
                             classificaController.isClassificaViewPresented = true
+                            FirebaseService.shared.getClassifica()
                         }label: {
                             GameButton(title: "Classifica", backgroundColor: Color(.systemOrange))
                         }.fullScreenCover(isPresented: $classificaController.isClassificaViewPresented){
-                            ClassificaView()
+                            ClassificaView(viewController: ClassificaViewController())
                         }
                         
-                        var nome = UserDefaults.standard.string(forKey: "username")!
-                        Text("Ciao "+nome)
+                        
+                        
+                        Text("Ciao "+UserDefaults.standard.string(forKey: "username")!)
+                        Text("Punteggio: \(UserDefaults.standard.integer(forKey: "score"))")
+                        
                         
                         
                     }).edgesIgnoringSafeArea(.vertical)

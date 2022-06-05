@@ -11,15 +11,19 @@ struct Game: Codable {
     let id: String
     var player1Id: String
     var player2Id: String
-    var player3Id: String
     var amboWinnerId: String
     var ternaWinnerId: String
     var quaternaWinnerId: String
     var cinquinaWinnerId: String
     var tombolaWinnerId: String
     
-    //quanti giocatori vogliono fare rematch 
-    var rematchPlayerId: [String]
+    //quanti giocatori vogliono fare rematch
+    //var rematchPlayerId: [String]
     
     var numeriEstratti: [Int]
+    var numbers = Array(1...90)
+}
+
+struct numEstratto: Codable {
+    let id: Int
 }
