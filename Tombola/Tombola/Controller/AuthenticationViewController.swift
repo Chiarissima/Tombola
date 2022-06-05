@@ -13,7 +13,6 @@ final class AuthenticationViewController: ObservableObject {
     @Published var signUp = false
     @State var authView = AuthenticationView()
     @Published var alertItem: AlertItem?
-    @Published var classifica: Classifica?
     
     
     let auth = Auth.auth()

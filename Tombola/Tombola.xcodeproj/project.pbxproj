@@ -45,6 +45,8 @@
 		21754974282DD272003AC0D0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 21754973282DD272003AC0D0 /* FirebaseStorage */; };
 		21754976282DD272003AC0D0 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 21754975282DD272003AC0D0 /* FirebaseStorageCombine-Community */; };
 		21754978282DD272003AC0D0 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 21754977282DD272003AC0D0 /* FirebaseStorageSwift-Beta */; };
+		B17BDBD1284D49770029375F /* RegolamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BDBD0284D49770029375F /* RegolamentoViewController.swift */; };
+		B1BA55FD284D4A9E002E1629 /* RegolamentoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BA55FC284D4A9E002E1629 /* RegolamentoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		21754951282DCEB0003AC0D0 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		21754954282DCECF003AC0D0 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		21754956282DD17D003AC0D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B17BDBD0284D49770029375F /* RegolamentoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegolamentoViewController.swift; sourceTree = "<group>"; };
+		B1BA55FC284D4A9E002E1629 /* RegolamentoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegolamentoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 				21579F5F282FAACC00157AC9 /* AuthenticationView.swift */,
 				21579F63282FBB2000157AC9 /* ClassificaView.swift */,
 				21579F65282FBC7700157AC9 /* HomeView.swift */,
+				B1BA55FC284D4A9E002E1629 /* RegolamentoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				21579F6D282FF75E00157AC9 /* HomeViewController.swift */,
 				21579F6B282FF65800157AC9 /* ClassificaViewController.swift */,
 				21579F69282FF52F00157AC9 /* GameViewController.swift */,
+				B17BDBD0284D49770029375F /* RegolamentoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -287,6 +293,7 @@
 				2175493A282DCBB0003AC0D0 /* GameButton.swift in Sources */,
 				21579F60282FAACC00157AC9 /* AuthenticationView.swift in Sources */,
 				21579F70282FF7BF00157AC9 /* AuthenticationViewController.swift in Sources */,
+				B17BDBD1284D49770029375F /* RegolamentoViewController.swift in Sources */,
 				21579F66282FBC7700157AC9 /* HomeView.swift in Sources */,
 				2175494E282DCE54003AC0D0 /* GameNotification.swift in Sources */,
 				21754949282DCD8B003AC0D0 /* Model.swift in Sources */,
@@ -295,6 +302,7 @@
 				21579F64282FBB2000157AC9 /* ClassificaView.swift in Sources */,
 				2175493E282DCC3D003AC0D0 /* GameView.swift in Sources */,
 				21754950282DCE77003AC0D0 /* AlertItem.swift in Sources */,
+				B1BA55FD284D4A9E002E1629 /* RegolamentoView.swift in Sources */,
 				21754940282DCCA7003AC0D0 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

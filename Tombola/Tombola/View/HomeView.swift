@@ -8,9 +8,10 @@ import SwiftUI
 
 struct HomeView: View {
         
-    //devo avere accesso alla AuthenticationViewModel, la inizializzo
+    //devo avere accesso alla UsernameViewModel, la inizializzo
     @StateObject var viewController = HomeViewController()
     @StateObject var classificaController = ClassificaViewController()
+    @StateObject var regolamentoController = RegolamentoViewController()
     @StateObject var authController = AuthenticationViewController()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
@@ -43,26 +44,32 @@ struct HomeView: View {
                         }label: {
                             GameButton(title: "Inizia", backgroundColor: Color(.systemRed))
                         }.fullScreenCover(isPresented: $viewController.isGameViewPresented){
-                            //indico quale view mostrare
+                            //indichi quale view vuoi mostrare
                             GameView(viewController: GameViewController())
+                            }
+                        
+                        Button {
+                            print("Regolamento")
+                            regolamentoController.isRegolamentoViewPresented = true
+                        }label: {
+                            GameButton(title: "Regolamento", backgroundColor: Color(.systemBlue))
+                        }.fullScreenCover(isPresented: $regolamentoController.isRegolamentoViewPresented){
+                            //indichi quale view vuoi mostrare
+                            RegolamentoView()
                             }
                     
                         
                         Button {
                             print("Classifica")
                             classificaController.isClassificaViewPresented = true
-                            FirebaseService.shared.getClassifica()
                         }label: {
                             GameButton(title: "Classifica", backgroundColor: Color(.systemOrange))
                         }.fullScreenCover(isPresented: $classificaController.isClassificaViewPresented){
                             ClassificaView(viewController: ClassificaViewController())
                         }
                         
-                        
-                        
-                        Text("Ciao "+UserDefaults.standard.string(forKey: "username")!)
-                        Text("Punteggio: \(UserDefaults.standard.integer(forKey: "score"))")
-                        
+                        //var nome = UserDefaults.standard.string(forKey: "username")!
+                        //Text("Ciao "+nome)
                         
                         
                     }).edgesIgnoringSafeArea(.vertical)

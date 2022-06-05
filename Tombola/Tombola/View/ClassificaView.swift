@@ -46,7 +46,7 @@ struct ClassificaView: View {
                         }
                     }*/
                    
-                    ForEach(0..<ClassificaViewController.utenti.count) { i in
+                    /*ForEach(0..<ClassificaViewController.utenti.count) { i in
                         HStack {
                             Image(systemName: "photo")
                             VStack(alignment: .leading) {
@@ -63,7 +63,7 @@ struct ClassificaView: View {
                                 .scaledToFit()
                             
                         }
-                    }
+                    }*/
                     
                     Button {
                         print("Indietro")
