@@ -16,10 +16,6 @@ struct Game: Codable {
     var quaternaWinnerId: String
     var cinquinaWinnerId: String
     var tombolaWinnerId: String
-    
-    //quanti giocatori vogliono fare rematch
-    //var rematchPlayerId: [String]
-    
     var numeriEstratti: [Int]
     var numbers = Array(1...90)
 }

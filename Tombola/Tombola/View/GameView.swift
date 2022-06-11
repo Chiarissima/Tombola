@@ -25,14 +25,14 @@ struct GameView: View {
     
     var body: some View {
         
-        var cronologia = viewController.getListNumbers()
-        var limite = cronologia.count
+        let cronologia = viewController.getListNumbers()
+        let limite = cronologia.count
         
         GeometryReader { geometry in
             
-            var a = viewController.getRandomNumber()
-            var (ar, br, cr) = viewController.setCards(array: a)
-            var (ar0, br0, cr0) = viewController.rimuoviZeri(ar: ar, br: br, cr: cr)
+            let a = viewController.getRandomNumber()
+            let (ar, br, cr) = viewController.setCards(array: a)
+            let (ar0, br0, cr0) = viewController.rimuoviZeri(ar: ar, br: br, cr: cr)
             
            
             VStack(alignment: .center) {
@@ -89,6 +89,7 @@ struct GameView: View {
                         )
                     }else{
                         LoadingView()
+                            .background(Color(red: 1.0, green: 0.9137, blue: 0.6275))
                     }
                 }
                 .padding()
@@ -97,6 +98,7 @@ struct GameView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray)
                 )
+                .background(Color(red: 1.0, green: 0.9137, blue: 0.6275))
                 
                 Spacer()
                 
@@ -168,16 +170,16 @@ struct GameView: View {
                     //Richiama func firebase che elimina il gioco
                     viewController.quitGame()
                 } label: {
-                    GameButton(title: "Abbandona", backgroundColor: .gray)
+                    GameButton(title: "Abbandona", backgroundColor: Color(red: 0.9529, green: 0.6471, blue: 0.196))
                 }
             }
             .padding()
-            .background(Color(hue: 0.131, saturation: 0.107, brightness: 0.842, opacity: 0.978))
-            
+            .background(Color(red: 1.0, green: 0.9137, blue: 0.6275))
+            .alert(item: $viewController.alertItem){ alertItem in
+                alertItem.isWinner ? Alert(title: alertItem.title, message: alertItem.message, dismissButton: .default(Text("OK"))) : Alert(title: alertItem.title, message: alertItem.message, dismissButton: .default(Text("OK")))
+            }
         }.onAppear(){
             viewController.getTheGame()
-            //FirebaseService.shared.createClassifica()
-            //FirebaseService.shared.addUserInRanking(with: viewController.nome, with: viewController.score)
         }
     }
 }

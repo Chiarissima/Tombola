@@ -14,67 +14,57 @@ struct ClassificaView: View {
     
     var body: some View {
         
-        Color(red: 1.0, green: 0.9137, blue: 0.6275)
-            .overlay(
+        GeometryReader { geometry in
                 VStack(spacing: 20){
-                    Image("logo")
+                    Image("coins")
                         .resizable()
                         .scaledToFit()
                     
-                    Text("CLASSIFICA")
+                    Text("PUNTEGGI")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(Color(hue: 0.07, saturation: 0.172, brightness: 0.412))
                         .multilineTextAlignment(.center)
-
-                    /*List(0..<10) { item in
-                        HStack {
-                            Image(systemName: "photo")
-                            VStack(alignment: .leading) {
-                                Text("Filippo Lupatelli")
-                                Text("filo@unibo.it")
-                                    .font(.subheadline)
-                                    .fontWeight(.light)
-                            }
-
-                            Text("300")
-                                .multilineTextAlignment(.trailing)
-                            Image("coin")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .scaledToFit()
-                        }
-                    }*/
                    
-                    /*ForEach(0..<ClassificaViewController.utenti.count) { i in
-                        HStack {
-                            Image(systemName: "photo")
-                            VStack(alignment: .leading) {
-                                Text("\(ClassificaViewController.utenti[i])")
-                                Text("\(ClassificaViewController.utenti[i])")
-                                    .font(.subheadline)
-                                    .fontWeight(.light)
+                    ScrollView {
+                        VStack(alignment: .leading){
+                            ForEach(0..<viewController.emails.count) { i in
+                                HStack {
+                                    let text = viewController.emails[i]
+                                    let char = text.prefix(1).uppercased()
+                                    Text(char)
+                                        .padding()
+                                        .background(Color.orange)
+                                        .clipShape(Circle())
+                                    Text("\(viewController.emails[i])")
+                                    
+                                    HStack{
+                                        Text("\(viewController.scores[i])")
+                                            .multilineTextAlignment(.trailing)
+                                            .frame(alignment: .trailing)
+                                        
+                                        Image("goldCoin")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .scaledToFit()
+                                        .frame(alignment: .trailing)
+                                    }
+                                }
                             }
-                            Text("\(ClassificaViewController.punteggi[i])")
-                                .multilineTextAlignment(.trailing)
-                            Image("coin")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .scaledToFit()
-                            
                         }
-                    }*/
-                    
+                    }
+                            
                     Button {
                         print("Indietro")
                         mode.wrappedValue.dismiss()
                     }label: {
-                        GameButton(title: "Indietro", backgroundColor: Color(hue: 0.081, saturation: 0.237, brightness: 0.66))
+                        GameButton(title: "Indietro", backgroundColor: Color(red:0.9569, green:0.7333, blue:0.2314))
                     }
                     .padding(.bottom, 20.0)
-                        
-                        
-                }).edgesIgnoringSafeArea(.vertical)
+                }
+                .padding()
+                .background(Color(red: 1.0, green: 0.9137, blue: 0.6275))
+        }
     }
 }
 

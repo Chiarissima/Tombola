@@ -10,8 +10,11 @@ import Combine
 
 final class GameViewController: ObservableObject {
     
+    @Published var alertTombola : Bool = false
+    @Published var alertItem: AlertGame?
     @Published var game: Game? {
         didSet {
+            checkWin()
             if game == nil {
                 updateGameNotificationFor(.finished)
             } else if game?.player2Id == "" {
@@ -21,6 +24,8 @@ final class GameViewController: ObservableObject {
             } else {
                 updateGameNotificationFor(.started)
             }
+            
+            //cambio bottone
             if (game?.amboWinnerId == "") {
                 updateWinGameNotificationFor(.ambo)
             } else if (game?.amboWinnerId != "" && game?.ternaWinnerId == "") {
@@ -35,13 +40,11 @@ final class GameViewController: ObservableObject {
         }
     }
     
-    @Published var alertItem: AlertItem?
     @Published var gameNotification = GameNotification.waitingForPlayer
     @Published var gameWin = WinGameNotification.ambo
     var utente = UserDefaults.standard.string(forKey: "username")!
-    var punteggioUtente = UserDefaults.standard.string(forKey: "score")!
     private var cancellables: Set<AnyCancellable> = []
-    
+        
     //Array "vuoto" iniziale per i 15 numeri casuali
     var a = Array(repeating: 0, count: 15)
     
@@ -99,7 +102,7 @@ final class GameViewController: ObservableObject {
     var numEstratto: Int = 0
     var numEstrattoGiusto: Int = 0
     
-    
+    //metodo per accedere al gioco
     func getTheGame() {
         FirebaseService.shared.startGame(with: utente)
         FirebaseService.shared.$game
@@ -108,11 +111,13 @@ final class GameViewController: ObservableObject {
         
     }
     
+    //metodo per abbandonare il gioco
     func quitGame(){
         FirebaseService.shared.quitGame()
     }
     
     
+    //metodo per aggiornare la notifica dello stato del gioco
     func updateGameNotificationFor(_ state: GameState){
         
         switch state {
@@ -126,6 +131,7 @@ final class GameViewController: ObservableObject {
         
     }
     
+    //metodo per aggiornare il bottone delle vittorie
     func updateWinGameNotificationFor(_ state: WinGame){
         
         switch state {
@@ -147,7 +153,7 @@ final class GameViewController: ObservableObject {
     func getRandomNumber() -> Array<Int> {
         while tot > 0 {
             for i in 0...14 {
-                var r = Int.random(in: 1...90)
+                let r = Int.random(in: 1...90)
                 if ((a[i] == 0) && !a.contains(r)){
                     if ((r >= 1) && (r <= 9) && (c0 > 0)) {
                         a[i] = r;
@@ -336,10 +342,6 @@ final class GameViewController: ObservableObject {
             }
             if ((ambo1 == 2) || (ambo2 == 2) || (ambo3 == 2)) {
                 FirebaseService.shared.updateAmbo(with: utente)
-                var score = UserDefaults.standard.integer(forKey: "score")
-                score += 2
-                UserDefaults.standard.set(score, forKey: "score")
-                UserDefaults.standard.synchronize()
                 FirebaseService.shared.updateScoreAmbo(with: utente)
             }
         }
@@ -364,10 +366,6 @@ final class GameViewController: ObservableObject {
             }
             if ((terna1 == 3) || (terna2 == 3) || (terna3 == 3)) {
                 FirebaseService.shared.updateTerna(with: utente)
-                var score = UserDefaults.standard.integer(forKey: "score")
-                score += 3
-                UserDefaults.standard.set(score, forKey: "score")
-                UserDefaults.standard.synchronize()
                 FirebaseService.shared.updateScoreTerna(with: utente)
             }
         }
@@ -392,10 +390,6 @@ final class GameViewController: ObservableObject {
             }
             if ((quaterna1 == 4) || (quaterna2 == 4) || (quaterna3 == 4)) {
                 FirebaseService.shared.updateQuaterna(with: utente)
-                var score = UserDefaults.standard.integer(forKey: "score")
-                score += 4
-                UserDefaults.standard.set(score, forKey: "score")
-                UserDefaults.standard.synchronize()
                 FirebaseService.shared.updateScoreQuaterna(with: utente)
             }
         }
@@ -420,10 +414,6 @@ final class GameViewController: ObservableObject {
             }
             if ((cinq1 == 5) || (cinq2 == 5) || (cinq3 == 5)) {
                 FirebaseService.shared.updateCinquina(with: utente)
-                var score = UserDefaults.standard.integer(forKey: "score")
-                score += 5
-                UserDefaults.standard.set(score, forKey: "score")
-                UserDefaults.standard.synchronize()
                 FirebaseService.shared.updateScoreCinquina(with: utente)
             }
         }
@@ -448,10 +438,6 @@ final class GameViewController: ObservableObject {
             }
             if ((tomb1 >= 5) && (tomb2 >= 5) && (tomb3 >= 5)) {
                 FirebaseService.shared.updateTombola(with: utente)
-                var score = UserDefaults.standard.integer(forKey: "score")
-                score += 6
-                UserDefaults.standard.set(score, forKey: "score")
-                UserDefaults.standard.synchronize()
                 FirebaseService.shared.updateScoreTombola(with: utente)
             }
         }
@@ -459,6 +445,7 @@ final class GameViewController: ObservableObject {
         FirebaseService.shared.updateGame(game!)
     }
     
+    //metodo per ottenere l'ultimo numero estratto
     func getLastNumber() -> (Int) {
         var number = 0
         guard game != nil else { return 0}
@@ -468,6 +455,7 @@ final class GameViewController: ObservableObject {
         return number
     }
     
+    //metodo per ottenere l'array di numeri estratti
     func getListNumbers() -> Array<Int> {
         guard game != nil else { return []}
         if !(game!.numeriEstratti.isEmpty) {
@@ -478,5 +466,20 @@ final class GameViewController: ObservableObject {
         return cronologia
     }
     
+    func checkWin() {
+        alertItem = nil
+        guard game != nil else { return }
+        
+        //check if game is finished
+        if game!.tombolaWinnerId != "" {
+            if game!.tombolaWinnerId == utente {
+                //abbiamo vinto
+                alertItem = AlertContext.tombolaWin
+            } else {
+                //abbiamo perso
+                alertItem = AlertContext.tombolaLost
+            }
+        }
+    }
 }
 

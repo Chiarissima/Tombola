@@ -11,14 +11,10 @@ import FirebaseAuth
 final class AuthenticationViewController: ObservableObject {
     @Published var signedIn = false
     @Published var signUp = false
-    @State var authView = AuthenticationView()
-    @Published var alertItem: AlertItem?
-    
     
     let auth = Auth.auth()
     
     func signIn(username: String, password: String, completion: @escaping (Bool) -> Void) {
-        alertItem = nil
         auth.signIn(withEmail: username, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
                 print("Errore nel login")
@@ -43,7 +39,6 @@ final class AuthenticationViewController: ObservableObject {
 
 
     func signUp(username: String, password: String, completion: @escaping (Bool) -> Void) {
-        alertItem = nil
         auth.createUser(withEmail: username, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
                 print("Errore nella registrazione")
@@ -60,7 +55,7 @@ final class AuthenticationViewController: ObservableObject {
                 //Success
                 self?.signUp = true
                 completion(true)
-                FirebaseService.shared.updateClassifica(with: username)
+                FirebaseService.shared.addInClassifica(with: username)
             }
             
             print("Registrazione effettuata con successo!")
